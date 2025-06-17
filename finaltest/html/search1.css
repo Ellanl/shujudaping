@@ -1,0 +1,117 @@
+.search-container {
+    float: right;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    width: 450px;
+    padding: 33pxs;
+    background: #fff;
+    border-radius: 25px;
+  }
+  
+  .search-container input[type=text] {
+    width: 85%;
+    height: 40px;
+    margin-top: 8px;
+    font-size: 17px;
+    border: none;
+    border-radius: 25px;
+    border: 0;
+  }
+  
+  .search-container img{
+      width: 25px;
+      height: auto;
+  }
+  
+  .search-container button{
+      float: right;
+      padding: 6px 10px;
+      margin-top: 7px;
+      margin-right: 10px;
+      background: #fff;
+      font-size: 17px;
+      border-radius: 50%;
+      border: none;
+      cursor: pointer;
+  }
+  
+  .search-container input[placeholder=搜索]{
+      margin-left: 10px;
+      margin-top: 5px;
+  }
+
+  /* 弹窗 (background) */
+.modal {
+    display: none; /*默认隐藏*/
+    position: fixed; /* 固定定位 */
+    
+    z-index: 2; /* 设置在顶层 */
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%;
+    overflow: auto; 
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0.4); 
+    opacity: 0;
+}
+
+.modal.active {
+    opacity: 1;
+}
+ 
+/* 弹窗内容 */
+.modal-content {
+    display:flex;
+    
+    background-color: #fefefe;
+    margin: 15% auto; 
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; 
+    
+}
+
+
+ 
+/* 关闭按钮 */
+.close {
+    position:absolute;
+    right:210px;
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+ 
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.contpara{
+    display:flex;
+    flex:1;
+    flex-direction:column;
+    
+}
+
+.p1{
+    display:flex;
+    flex:1;
+}
+.p2{
+    display:flex;
+    flex:1;
+}
+.p3{
+    display:flex;
+    flex:1;
+}
+.p4{
+    display:flex;
+    flex:1;
+}

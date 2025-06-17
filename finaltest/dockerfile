@@ -1,0 +1,78 @@
+FROM ubuntu:20.04
+
+# 设置环境变量避免交互式提示
+ENV DEBIAN_FRONTEND=noninteractive
+
+# 更新软件包列表并安装必要的软件
+RUN apt-get update && \
+    apt-get install -y \
+    openssh-server \
+    sudo \
+    net-tools \
+    iputils-ping \
+    vim \
+    mysql-client \
+    ansible \
+    cron\
+    sshpass \
+    apache2 \
+    cron \
+    inotify-tools \
+    php-mysql \
+    libapache2-mod-php \
+    && rm -rf /var/lib/apt/lists/*
+
+# 创建SSH目录并生成主机密钥
+RUN rm -rf /var/www/html/*
+
+
+    
+COPY ./html /var/www/html/
+COPY startup.sh /startup.sh
+RUN chmod +x /startup.sh
+RUN chmod 777 /var/www/html/add.sh
+RUN chmod 777 /var/www/html/delete.sh
+RUN chmod 777 /var/www/html/script.sh
+RUN chmod 777 /var/www/html/hosts.txt
+RUN chmod 777 /var/www/html/test.txt
+RUN chmod 777 /var/www/html/output.php
+
+# 复制 cron 配置文件到容器
+RUN echo "* * * * *  ansible all -m ping > /var/www/html/test.txt" > /etc/cron.d/my-cron-job && \
+    echo "* * * * *  /var/www/html/delete.sh" >> /etc/cron.d/my-cron-job && \
+    echo "* * * * *  /var/www/html/add.sh" >> /etc/cron.d/my-cron-job 
+
+# 确保文件权限正确（必须步骤）
+RUN chmod 600 /etc/cron.d/my-cron-job
+
+# 安装 cron 任务（直接加载）
+RUN crontab /etc/cron.d/my-cron-job
+
+
+RUN a2enmod rewrite
+RUN chown -R www-data:www-data /var/www/html \
+   && a2enmod rewrite \
+   && service apache2 restart
+
+RUN mkdir -p /var/run/sshd && \
+    ssh-keygen -A
+
+# 设置root密码（建议在生产环境中使用更安全的方式）
+RUN echo 'root:123123' | chpasswd
+
+# 允许root通过SSH登录（生产环境应禁用）
+RUN sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config && \
+    sed -i 's/#PermitEmptyPasswords no/PermitEmptyPasswords yes/' /etc/ssh/sshd_config 
+
+# 保持SSH服务活跃
+RUN sed -i 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' /etc/pam.d/sshd
+RUN mkdir -p /root/.ssh && chown root.root /root && chmod 700 /root/.ssh 
+# 暴露SSH端口
+EXPOSE 22
+
+
+# 启动SSH服务
+CMD ["/usr/sbin/sshd", "-D"]
+CMD ["mysqld"]
+CMD ["apache2ctl", "-D", "FOREGROUND"]
+CMD ["/startup.sh"]

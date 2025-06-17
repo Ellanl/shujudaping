@@ -1,0 +1,38 @@
+version: '2.3'
+
+services:
+  control:
+    #image: ubuntu:20.04
+    environment:
+      - DEBIAN_FRONTEND=noninteractive
+    build: 
+      context: .
+      dockerfile: dockerfile
+    hostname: controller
+    container_name: controller
+    volumes:
+      - ./ansible:/etc/ansible
+      - ./ssh_keys:/root/.ssh
+     # - ./inventory.ini:/etc/ansible/hosts
+      # - ./html:/var/www/html
+    ports:
+      - "8080:80"
+    networks:
+      - p-a
+
+  db:
+    image: mysql:5.6.47
+    container_name: mysql-container
+    environment:
+      MYSQL_ROOT_PASSWORD: zcl221b
+    ports:
+      - "3307:3306"
+    volumes:
+      - ./mysql-data/:/docker-entrypoint-initdb.d
+    networks:
+      - p-a
+#    network_mode: "host"
+   
+networks:
+  p-a:
+    driver: bridge

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="edit.css">
+    <title>修改</title>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>修改配置</h1>
+        </div>
+        <div class="main">
+            <form action="edit.php" method="post">
+                <div class="iadd">
+                    <img src="./images/IP (2).png" alt="IP">
+                    <input type="text" placeholder="IP地址" name="ip">
+                </div><br>
+                <div class="iadd">
+                    <img src="./images/设置 (1).png" alt="设置">
+                    <select id="editsection" name="editsection">
+                      <option value="ip">IP</option>
+                      <option value="password">密码</option>
+                      <option value="ports">端口</option>
+                      <option value="username">用户名</option>
+                    </select>
+                </div><br>
+                <div class="iadd">
+                    <img src="./images/设置 (1).png" alt="设置">
+                    <input type="text" placeholder="新配置" name="new">
+                </div><br>
+                <button>添加</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

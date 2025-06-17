@@ -1,0 +1,128 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    height: 100vh;
+    background: #eee;
+    background: url(./images/cat.png);
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+nav{
+    background: url("./images/卡通背景.png");
+    background-size: cover;
+    background-position: top;
+    background-repeat: no-repeat;
+    width: 100%;
+    padding: 0 6%;
+    display: flex;
+    position: relative;
+    align-items: center;
+    height: 140px;
+    box-shadow: rgb(0 0 0 / 20%) 0px 2px 1px -1px,
+                rgb(0 0 0/14%) 0px 1px 1px 0px, rgb(0 0 0 / 12%) 0px 1px 3px 0px;
+}
+
+nav ul{
+    display: flex;
+    width: 30%;
+}
+
+nav ul li{
+    margin-left: 5%;
+    list-style: none;
+}
+
+nav ul a{
+    text-decoration: none;
+    color: #fff;
+}
+
+.user-pic{
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    right: 10%;
+    border-radius: 50%;
+    border: 4px solid rgba(255, 255, 255, 0.3);
+}
+
+.dropdown-content{
+    position: absolute;
+    right: 5%;
+    top: 80%;
+    background: #f9f9f9;
+    box-shadow: 0 8px 16px 0 rgba(153, 153, 153, 0.527);
+    z-index: 1;
+    border-radius: 10px;
+    width: 320px;
+    display: none;
+}
+
+.dropdown-content a{
+    color: black;
+    padding: 12px 16px;
+    display: flex;
+    text-decoration: none;
+}
+
+.user-info{
+    display: flex;
+    align-items: center;
+    padding: 5% 0 0 10%;
+}
+
+.user-info img{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+.user-info h3{
+    font-weight: 600;
+}
+
+.menu{
+    padding-bottom: 3%;
+}
+
+.menu hr{
+    border: 0;
+    height: 2px;
+    background: #dfdbdb;
+    width: 80%;
+    margin: 5% 0 3% 10%;
+}
+
+.menu-link img{
+    width: 23px;
+    height: 23px;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.menu-link p{
+    width: 100%;
+    font-size: 15px;
+}
+
+.menu-link span{
+    font-size: 20px;
+    transition: transform 0.3s;
+}
+
+.menu-link{
+    margin: 0 5% 0 5%;
+}
+
+.menu-link :hover span{
+    transform: translateX(5px)
+}
+

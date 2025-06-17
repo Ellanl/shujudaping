@@ -1,0 +1,2 @@
+[node]
+192.168.20.130  ansible_ports='22' ansible_user='root' ansible_password='zcl221b'

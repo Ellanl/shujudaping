@@ -1,0 +1,3 @@
+* * * * *  ansible all -m ping > /var/www/html/test.txt
+* * * * *  /var/www/html/delete.sh
+* * * * *  /var/www/html/add.sh 
